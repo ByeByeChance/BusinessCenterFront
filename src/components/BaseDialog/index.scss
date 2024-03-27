@@ -1,0 +1,41 @@
+.base-dialog {
+  position: relative;
+  padding-top: 0;
+  border-bottom: 1px solid var(--el-border-color-lighter);
+  .el-dialog__header {
+    padding: 0 !important;
+    margin: 0;
+  }
+  .base-dialog-header {
+    height: 50px;
+    font-size: 16px;
+    line-height: 50px;
+    .base-dialog-header-operation {
+      .fullscreen {
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+      }
+      .el-button {
+        margin-left: 7px;
+        font-size: inherit;
+        color: initial;
+        opacity: 0.8;
+      }
+    }
+  }
+  .el-dialog__body {
+    padding-top: 30px;
+  }
+  .base-dialog-footer {
+    text-align: right;
+  }
+  &.fullscreen {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    .table-box {
+      height: 80vh;
+    }
+  }
+}
