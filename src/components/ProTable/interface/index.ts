@@ -1,8 +1,8 @@
-import { VNode, ComponentPublicInstance, Ref } from "vue";
-import { BreakPoint, Responsive } from "@/components/Grid/interface";
-import { TableColumnCtx } from "element-plus/es/components/table/src/table-column/defaults";
-import { ProTableProps } from "@/components/ProTable/index.vue";
-import ProTable from "@/components/ProTable/index.vue";
+import { VNode, ComponentPublicInstance, Ref } from 'vue';
+import { BreakPoint, Responsive } from '@/components/Grid/interface';
+import { TableColumnCtx } from 'element-plus/es/components/table/src/table-column/defaults';
+import { ProTableProps } from '@/components/ProTable/index.vue';
+import ProTable from '@/components/ProTable/index.vue';
 
 export interface EnumProps {
   label?: string; // 选项框显示的文字
@@ -13,20 +13,20 @@ export interface EnumProps {
   [key: string]: any;
 }
 
-export type TypeProps = "index" | "selection" | "radio" | "expand" | "sort";
+export type TypeProps = 'index' | 'selection' | 'radio' | 'expand' | 'sort';
 
 export type SearchType =
-  | "input"
-  | "input-number"
-  | "select"
-  | "select-v2"
-  | "tree-select"
-  | "cascader"
-  | "date-picker"
-  | "time-picker"
-  | "time-select"
-  | "switch"
-  | "slider";
+  | 'input'
+  | 'input-number'
+  | 'select'
+  | 'select-v2'
+  | 'tree-select'
+  | 'cascader'
+  | 'date-picker'
+  | 'time-picker'
+  | 'time-select'
+  | 'switch'
+  | 'slider';
 
 export type SearchRenderScope = {
   searchParam: { [key: string]: any };
@@ -69,7 +69,7 @@ export type HeaderRenderScope<T> = {
 };
 
 export interface ColumnProps<T = any>
-  extends Partial<Omit<TableColumnCtx<T>, "type" | "children" | "renderCell" | "renderHeader">> {
+  extends Partial<Omit<TableColumnCtx<T>, 'type' | 'children' | 'renderCell' | 'renderHeader'>> {
   type?: TypeProps; // 列类型
   tag?: boolean | Ref<boolean>; // 是否是标签展示
   isShow?: boolean | Ref<boolean>; // 是否显示在表格当中

@@ -1,4 +1,4 @@
-import { ReqPage } from "./index";
+import { ReqPage } from './index';
 // 菜单管理模块
 export namespace Menu {
   export interface ReqMenuForm {

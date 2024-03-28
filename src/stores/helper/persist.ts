@@ -1,4 +1,4 @@
-import { PersistedStateOptions } from "pinia-plugin-persistedstate";
+import { PersistedStateOptions } from 'pinia-plugin-persistedstate';
 
 /**
  * @description pinia 持久化参数配置

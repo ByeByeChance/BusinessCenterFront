@@ -35,8 +35,8 @@
 </template>
 
 <script setup lang="ts" name="TreeFilter">
-import { ref, watch, onBeforeMount, nextTick } from "vue";
-import { ElTree } from "element-plus";
+import { ref, watch, onBeforeMount, nextTick } from 'vue';
+import { ElTree } from 'element-plus';
 
 // 接收父组件参数并设置默认值
 interface TreeFilterProps {
@@ -49,13 +49,13 @@ interface TreeFilterProps {
   defaultValue?: any; // 默认选中的值 ==> 非必传
 }
 const props = withDefaults(defineProps<TreeFilterProps>(), {
-  id: "id",
-  label: "label",
+  id: 'id',
+  label: 'label',
   multiple: false
 });
 
 const defaultProps = {
-  children: "children",
+  children: 'children',
   label: props.label
 };
 
@@ -66,7 +66,7 @@ const treeAllData = ref<{ [key: string]: any }[]>([]);
 const selected = ref();
 const setSelected = () => {
   if (props.multiple) selected.value = Array.isArray(props.defaultValue) ? props.defaultValue : [props.defaultValue];
-  else selected.value = typeof props.defaultValue === "string" ? props.defaultValue : "";
+  else selected.value = typeof props.defaultValue === 'string' ? props.defaultValue : '';
 };
 
 onBeforeMount(async () => {
@@ -74,7 +74,7 @@ onBeforeMount(async () => {
   if (props.requestApi) {
     const { data } = await props.requestApi!();
     treeData.value = data;
-    treeAllData.value = [{ id: "", [props.label]: "全部" }, ...data];
+    treeAllData.value = [{ id: '', [props.label]: '全部' }, ...data];
   }
 });
 
@@ -90,13 +90,13 @@ watch(
   () => {
     if (props.data?.length) {
       treeData.value = props.data;
-      treeAllData.value = [{ id: "", [props.label]: "全部" }, ...props.data];
+      treeAllData.value = [{ id: '', [props.label]: '全部' }, ...props.data];
     }
   },
   { deep: true, immediate: true }
 );
 
-const filterText = ref("");
+const filterText = ref('');
 watch(filterText, val => {
   treeRef.value!.filter(val);
 });
@@ -123,12 +123,12 @@ const emit = defineEmits<{
 // 单选
 const handleNodeClick = (data: { [key: string]: any }) => {
   if (props.multiple) return;
-  emit("change", data[props.id]);
+  emit('change', data[props.id]);
 };
 
 // 多选
 const handleCheckChange = () => {
-  emit("change", treeRef.value?.getCheckedKeys());
+  emit('change', treeRef.value?.getCheckedKeys());
 };
 
 // 暴露给父组件使用
@@ -136,5 +136,5 @@ defineExpose({ treeData, treeAllData, treeRef });
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

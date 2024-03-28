@@ -1,4 +1,4 @@
-import { ref } from "vue";
+import { ref } from 'vue';
 
 export default function useDialog(closeDialogCallback?: (params?: any) => void, openDialogCallback?: () => void) {
   const visible = ref(false);

@@ -1,4 +1,4 @@
-import SparkMD5 from "spark-md5";
+import SparkMD5 from 'spark-md5';
 
 export function createChunk(file: File, index: number, chunkSize: number) {
   return new Promise(resolve => {

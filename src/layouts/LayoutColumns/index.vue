@@ -24,7 +24,7 @@
     </div>
     <el-aside :class="{ 'not-aside': !subMenuList.length }" :style="{ width: isCollapse ? '65px' : '210px' }">
       <div class="logo flx-center">
-        <span v-show="subMenuList.length" class="logo-text">{{ isCollapse ? "G" : title }}</span>
+        <span v-show="subMenuList.length" class="logo-text">{{ isCollapse ? 'G' : title }}</span>
       </div>
       <el-scrollbar>
         <el-menu
@@ -49,14 +49,14 @@
 </template>
 
 <script setup lang="ts" name="layoutColumns">
-import { ref, computed, watch } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/modules/auth";
-import { useGlobalStore } from "@/stores/modules/global";
-import Main from "@/layouts/components/Main/index.vue";
-import ToolBarLeft from "@/layouts/components/Header/ToolBarLeft.vue";
-import ToolBarRight from "@/layouts/components/Header/ToolBarRight.vue";
-import SubMenu from "@/layouts/components/Menu/SubMenu.vue";
+import { ref, computed, watch } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/modules/auth';
+import { useGlobalStore } from '@/stores/modules/global';
+import Main from '@/layouts/components/Main/index.vue';
+import ToolBarLeft from '@/layouts/components/Header/ToolBarLeft.vue';
+import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
+import SubMenu from '@/layouts/components/Menu/SubMenu.vue';
 
 const title = import.meta.env.VITE_GLOB_APP_TITLE;
 
@@ -70,7 +70,7 @@ const menuList = computed(() => authStore.showMenuListGet);
 const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string);
 
 const subMenuList = ref<Menu.MenuOptions[]>([]);
-const splitActive = ref("");
+const splitActive = ref('');
 watch(
   () => [menuList, route],
   () => {
@@ -78,7 +78,7 @@ watch(
     if (!menuList.value.length) return;
     splitActive.value = route.path;
     const menuItem = menuList.value.filter((item: Menu.MenuOptions) => {
-      return route.path === item.path || `/${route.path.split("/")[1]}` === item.path;
+      return route.path === item.path || `/${route.path.split('/')[1]}` === item.path;
     });
     if (menuItem[0].children?.length) return (subMenuList.value = menuItem[0].children);
     subMenuList.value = [];
@@ -99,5 +99,5 @@ const changeSubMenu = (item: Menu.MenuOptions) => {
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

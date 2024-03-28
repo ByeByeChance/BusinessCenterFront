@@ -21,7 +21,7 @@
             <el-button type="primary" :icon="Search" @click="search"> 搜索 </el-button>
             <el-button :icon="Delete" @click="reset"> 重置 </el-button>
             <el-button v-if="showCollapse" type="primary" link class="search-isOpen" @click="collapsed = !collapsed">
-              {{ collapsed ? "展开" : "合并" }}
+              {{ collapsed ? '展开' : '合并' }}
               <el-icon class="el-icon--right">
                 <component :is="collapsed ? ArrowDown : ArrowUp"></component>
               </el-icon>
@@ -33,13 +33,13 @@
   </div>
 </template>
 <script setup lang="ts" name="SearchForm">
-import { computed, ref } from "vue";
-import { ColumnProps } from "@/components/ProTable/interface";
-import { BreakPoint } from "@/components/Grid/interface";
-import { Delete, Search, ArrowDown, ArrowUp } from "@element-plus/icons-vue";
-import SearchFormItem from "./components/SearchFormItem.vue";
-import Grid from "@/components/Grid/index.vue";
-import GridItem from "@/components/Grid/components/GridItem.vue";
+import { computed, ref } from 'vue';
+import { ColumnProps } from '@/components/ProTable/interface';
+import { BreakPoint } from '@/components/Grid/interface';
+import { Delete, Search, ArrowDown, ArrowUp } from '@element-plus/icons-vue';
+import SearchFormItem from './components/SearchFormItem.vue';
+import Grid from '@/components/Grid/index.vue';
+import GridItem from '@/components/Grid/components/GridItem.vue';
 
 interface ProTableProps {
   columns?: ColumnProps[]; // 搜索配置列
@@ -82,7 +82,7 @@ const showCollapse = computed(() => {
     prev +=
       (current.search![breakPoint.value]?.span ?? current.search?.span ?? 1) +
       (current.search![breakPoint.value]?.offset ?? current.search?.offset ?? 0);
-    if (typeof props.searchCol !== "number") {
+    if (typeof props.searchCol !== 'number') {
       if (prev >= props.searchCol[breakPoint.value]) show = true;
     } else {
       if (prev >= props.searchCol) show = true;

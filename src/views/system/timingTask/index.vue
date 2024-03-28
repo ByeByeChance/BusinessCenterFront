@@ -16,9 +16,9 @@
 </template>
 
 <script setup lang="ts" name="timingTask">
-import { ref } from "vue";
-import type { UploadInstance, UploadFile } from "element-plus";
-import { useUpload } from "@/hooks/useUpload";
+import { ref } from 'vue';
+import type { UploadInstance, UploadFile } from 'element-plus';
+import { useUpload } from '@/hooks/useUpload';
 
 const upload = ref<UploadInstance>();
 
@@ -29,9 +29,9 @@ const onChange = async (file: UploadFile) => {
 };
 
 const successCallback = () => {
-  console.log("success");
+  console.log('success');
 };
 const errorCallback = () => {
-  console.log("error");
+  console.log('error');
 };
 </script>

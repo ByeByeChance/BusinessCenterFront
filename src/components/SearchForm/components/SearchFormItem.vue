@@ -23,9 +23,9 @@
 </template>
 
 <script setup lang="ts" name="SearchFormItem">
-import { computed, inject, ref } from "vue";
-import { handleProp } from "@/utils";
-import { ColumnProps } from "@/components/ProTable/interface";
+import { computed, inject, ref } from 'vue';
+import { handleProp } from '@/utils';
+import { ColumnProps } from '@/components/ProTable/interface';
 
 interface SearchFormItem {
   column: ColumnProps;
@@ -39,18 +39,18 @@ const _searchParam = computed(() => props.searchParam);
 // 判断 fieldNames 设置 label && value && children 的 key 值
 const fieldNames = computed(() => {
   return {
-    label: props.column.fieldNames?.label ?? "label",
-    value: props.column.fieldNames?.value ?? "value",
-    children: props.column.fieldNames?.children ?? "children"
+    label: props.column.fieldNames?.label ?? 'label',
+    value: props.column.fieldNames?.value ?? 'value',
+    children: props.column.fieldNames?.children ?? 'children'
   };
 });
 
 // 接收 enumMap (el 为 select-v2 需单独处理 enumData)
-const enumMap = inject("enumMap", ref(new Map()));
+const enumMap = inject('enumMap', ref(new Map()));
 const columnEnum = computed(() => {
   let enumData = enumMap.value.get(props.column.prop);
   if (!enumData) return [];
-  if (props.column.search?.el === "select-v2" && props.column.fieldNames) {
+  if (props.column.search?.el === 'select-v2' && props.column.fieldNames) {
     enumData = enumData.map((item: { [key: string]: any }) => {
       return { ...item, label: item[fieldNames.value.label], value: item[fieldNames.value.value] };
     });
@@ -65,10 +65,10 @@ const handleSearchProps = computed(() => {
   const children = fieldNames.value.children;
   const searchEl = props.column.search?.el;
   let searchProps = props.column.search?.props ?? {};
-  if (searchEl === "tree-select") {
+  if (searchEl === 'tree-select') {
     searchProps = { ...searchProps, props: { ...searchProps.props, label, children }, nodeKey: value };
   }
-  if (searchEl === "cascader") {
+  if (searchEl === 'cascader') {
     searchProps = { ...searchProps, props: { ...searchProps.props, label, value, children } };
   }
   return searchProps;
@@ -77,10 +77,10 @@ const handleSearchProps = computed(() => {
 // 处理默认 placeholder
 const placeholder = computed(() => {
   const search = props.column.search;
-  if (["datetimerange", "daterange", "monthrange"].includes(search?.props?.type) || search?.props?.isRange) {
-    return { rangeSeparator: "至", startPlaceholder: "开始时间", endPlaceholder: "结束时间" };
+  if (['datetimerange', 'daterange', 'monthrange'].includes(search?.props?.type) || search?.props?.isRange) {
+    return { rangeSeparator: '至', startPlaceholder: '开始时间', endPlaceholder: '结束时间' };
   }
-  const placeholder = search?.props?.placeholder ?? (search?.el?.includes("input") ? "请输入" : "请选择");
+  const placeholder = search?.props?.placeholder ?? (search?.el?.includes('input') ? '请输入' : '请选择');
   return { placeholder };
 });
 

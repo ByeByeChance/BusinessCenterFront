@@ -1,14 +1,14 @@
-import router from "@/routers";
-import { defineStore } from "pinia";
-import { getUrlWithParams } from "@/utils";
-import { useKeepAliveStore } from "./keepAlive";
-import { TabsState, TabsMenuProps } from "@/stores/interface";
-import piniaPersistConfig from "@/stores/helper/persist";
+import router from '@/routers';
+import { defineStore } from 'pinia';
+import { getUrlWithParams } from '@/utils';
+import { useKeepAliveStore } from './keepAlive';
+import { TabsState, TabsMenuProps } from '@/stores/interface';
+import piniaPersistConfig from '@/stores/helper/persist';
 
 const keepAliveStore = useKeepAliveStore();
 
 export const useTabsStore = defineStore({
-  id: "geeker-tabs",
+  id: 'geeker-tabs',
   state: (): TabsState => ({
     tabsMenuList: []
   }),
@@ -40,10 +40,10 @@ export const useTabsStore = defineStore({
       this.tabsMenuList = this.tabsMenuList.filter(item => item.path !== tabPath);
     },
     // Close Tabs On Side
-    async closeTabsOnSide(path: string, type: "left" | "right") {
+    async closeTabsOnSide(path: string, type: 'left' | 'right') {
       const currentIndex = this.tabsMenuList.findIndex(item => item.path === path);
       if (currentIndex !== -1) {
-        const range = type === "left" ? [0, currentIndex] : [currentIndex + 1, this.tabsMenuList.length];
+        const range = type === 'left' ? [0, currentIndex] : [currentIndex + 1, this.tabsMenuList.length];
         this.tabsMenuList = this.tabsMenuList.filter((item, index) => {
           return index < range[0] || index >= range[1] || !item.close;
         });
@@ -72,5 +72,5 @@ export const useTabsStore = defineStore({
       });
     }
   },
-  persist: piniaPersistConfig("geeker-tabs")
+  persist: piniaPersistConfig('geeker-tabs')
 });

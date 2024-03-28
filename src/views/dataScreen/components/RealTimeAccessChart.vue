@@ -15,42 +15,42 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
-import { ECOption } from "@/components/ECharts/config";
-import ECharts from "@/components/ECharts/index.vue";
+import { ref } from 'vue';
+import { ECOption } from '@/components/ECharts/config';
+import ECharts from '@/components/ECharts/index.vue';
 
-const actualTotal = ref("216908");
+const actualTotal = ref('216908');
 const option = {
   title: [
     {
-      text: (0.5 * 100).toFixed(0) + "%",
-      left: "49%",
-      top: "35%",
-      textAlign: "center",
+      text: (0.5 * 100).toFixed(0) + '%',
+      left: '49%',
+      top: '35%',
+      textAlign: 'center',
       textStyle: {
-        fontSize: "16",
-        fontWeight: "normal",
-        color: "#ffffff",
-        align: "center",
-        textBorderColor: "rgba(0, 0, 0, 0)",
-        textShadowColor: "#000",
+        fontSize: '16',
+        fontWeight: 'normal',
+        color: '#ffffff',
+        align: 'center',
+        textBorderColor: 'rgba(0, 0, 0, 0)',
+        textShadowColor: '#000',
         textShadowBlur: 0,
         textShadowOffsetX: 0,
         textShadowOffsetY: 1
       }
     },
     {
-      text: "预约量",
-      left: "49%",
-      top: "25%",
-      textAlign: "center",
+      text: '预约量',
+      left: '49%',
+      top: '25%',
+      textAlign: 'center',
       textStyle: {
-        fontSize: "15",
-        fontWeight: "normal",
-        color: "#ffffff",
-        align: "center",
-        textBorderColor: "rgba(0, 0, 0, 0)",
-        textShadowColor: "#000",
+        fontSize: '15',
+        fontWeight: 'normal',
+        color: '#ffffff',
+        align: 'center',
+        textBorderColor: 'rgba(0, 0, 0, 0)',
+        textShadowColor: '#000',
         textShadowBlur: 0,
         textShadowOffsetX: 0,
         textShadowOffsetY: 1
@@ -58,15 +58,15 @@ const option = {
     }
   ],
   grid: {
-    top: "0",
-    left: "0px",
-    right: "0px",
-    bottom: "0",
+    top: '0',
+    left: '0px',
+    right: '0px',
+    bottom: '0',
     containLabel: true
   },
   polar: {
-    radius: ["75%", "85%"],
-    center: ["50%", "50%"]
+    radius: ['75%', '85%'],
+    center: ['50%', '50%']
   },
   angleAxis: {
     max: 120,
@@ -86,7 +86,7 @@ const option = {
     startAngle: 188
   },
   radiusAxis: {
-    type: "category",
+    type: 'category',
     show: true,
     axisLabel: {
       show: false
@@ -100,21 +100,21 @@ const option = {
   },
   series: [
     {
-      type: "liquidFill",
-      radius: "70%",
+      type: 'liquidFill',
+      radius: '70%',
       z: 2,
-      center: ["50%", "50%"],
+      center: ['50%', '50%'],
       data: [0.4, 0.4, 0.4],
       itemStyle: {
         color: {
-          type: "linear",
+          type: 'linear',
           x: 0,
           y: 0,
           x2: 0,
           y2: 1,
           colorStops: [
-            { offset: 0, color: "#35FAB6" },
-            { offset: 1, color: "rgba(40, 209, 247,0.3)" }
+            { offset: 0, color: '#35FAB6' },
+            { offset: 1, color: 'rgba(40, 209, 247,0.3)' }
           ],
           global: false
         }
@@ -123,9 +123,9 @@ const option = {
         borderDistance: 0,
         itemStyle: {
           borderWidth: 2,
-          borderColor: "#31d8d5",
+          borderColor: '#31d8d5',
           shadowBlur: 20,
-          shadowColor: "#50c1a7"
+          shadowColor: '#50c1a7'
         }
       },
       label: {
@@ -134,23 +134,23 @@ const option = {
       backgroundStyle: {
         borderWidth: 1,
         color: {
-          type: "radial",
+          type: 'radial',
           x: 0.5,
           y: 0.5,
           r: 0.5,
           colorStops: [
-            { offset: 0, color: "#0D2648" },
-            { offset: 0.8, color: "#0D2648" },
-            { offset: 1, color: "#228E7D" }
+            { offset: 0, color: '#0D2648' },
+            { offset: 0.8, color: '#0D2648' },
+            { offset: 1, color: '#228E7D' }
           ],
           global: false
         }
       }
     },
     {
-      type: "pie",
-      radius: ["80%", "80%"],
-      center: ["50%", "50%"],
+      type: 'pie',
+      radius: ['80%', '80%'],
+      center: ['50%', '50%'],
       z: 1,
       label: { show: false },
       silent: true,
@@ -158,19 +158,19 @@ const option = {
         borderWidth: 2,
         borderType: [8, 10],
         borderDashOffset: 15,
-        borderColor: "#31d8d5",
-        color: "#11144e",
-        borderCap: "round"
+        borderColor: '#31d8d5',
+        color: '#11144e',
+        borderCap: 'round'
       },
       data: [100]
     },
     {
-      type: "bar",
+      type: 'bar',
       data: [55],
       z: 10,
-      coordinateSystem: "polar",
+      coordinateSystem: 'polar',
       roundCap: true,
-      color: "#31d8d5"
+      color: '#31d8d5'
     }
   ]
 } as ECOption;
@@ -199,7 +199,7 @@ const option = {
     font-family: MetroDF;
     font-size: 32px;
     color: #66ffff;
-    background: url("../images/total.png") no-repeat;
+    background: url('../images/total.png') no-repeat;
     background-size: 100% 100%;
     &:last-child {
       margin-right: 0;

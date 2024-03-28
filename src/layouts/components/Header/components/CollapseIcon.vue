@@ -5,10 +5,10 @@
 </template>
 
 <script setup lang="ts">
-import { useGlobalStore } from "@/stores/modules/global";
+import { useGlobalStore } from '@/stores/modules/global';
 
 const globalStore = useGlobalStore();
-const changeCollapse = () => globalStore.setGlobalState("isCollapse", !globalStore.isCollapse);
+const changeCollapse = () => globalStore.setGlobalState('isCollapse', !globalStore.isCollapse);
 </script>
 
 <style scoped lang="scss">

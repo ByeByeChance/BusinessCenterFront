@@ -1,13 +1,13 @@
 // ? 暂未使用，目前使用全局 Loading 来控制重复请求
-import { CustomAxiosRequestConfig } from "../index";
-import qs from "qs";
+import { CustomAxiosRequestConfig } from '../index';
+import qs from 'qs';
 
 // 声明一个 Map 用于存储每个请求的标识 和 取消函数
 let pendingMap = new Map<string, AbortController>();
 
 // 序列化参数
 export const getPendingUrl = (config: CustomAxiosRequestConfig) =>
-  [config.method, config.url, qs.stringify(config.data), qs.stringify(config.params)].join("&");
+  [config.method, config.url, qs.stringify(config.data), qs.stringify(config.params)].join('&');
 
 export class AxiosCanceler {
   /**

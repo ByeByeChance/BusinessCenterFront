@@ -32,8 +32,8 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, useAttrs } from "vue";
-import { CloseBold } from "@element-plus/icons-vue";
+import { ref, computed, useAttrs } from 'vue';
+import { CloseBold } from '@element-plus/icons-vue';
 
 const attrs = useAttrs();
 
@@ -52,12 +52,12 @@ interface IDialogProps {
 
 const dialogProps = withDefaults(defineProps<IDialogProps>(), {
   visible: false,
-  title: "",
+  title: '',
   draggable: true,
-  width: "50%",
+  width: '50%',
   showFooter: true,
-  confirmText: "确认",
-  cancelText: "取消",
+  confirmText: '确认',
+  cancelText: '取消',
   appendToBody: true,
   destroyOnClose: true,
   showConfirmBtn: true
@@ -76,24 +76,24 @@ const dialogShow = computed({
         isFullscreen.value = false;
       }, 1000);
     }
-    emits("update:visible", val);
+    emits('update:visible', val);
   }
 });
 
 const emits = defineEmits<{
-  (e: "update:visible", status: boolean): void;
-  (e: "close"): void;
-  (e: "confirm"): void;
+  (e: 'update:visible', status: boolean): void;
+  (e: 'close'): void;
+  (e: 'confirm'): void;
 }>();
 
 const handleClose = () => {
-  emits("close");
+  emits('close');
 };
 const handleConfirm = () => {
-  emits("confirm");
+  emits('confirm');
 };
 </script>
 
 <style lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

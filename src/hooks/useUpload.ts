@@ -1,6 +1,6 @@
 // 参考文档 https://cn.vitejs.dev/guide/features#web-workers
-import Worker from "@/utils/worker?worker";
-import { uploadFile as uploadApi } from "@/api/modules/upload";
+import Worker from '@/utils/worker?worker';
+import { uploadFile as uploadApi } from '@/api/modules/upload';
 // import { useIndexDBStore } from '@/stores/modules/indexDB';
 // import { ElMessage } from 'element-plus';
 
@@ -64,10 +64,10 @@ export const useUpload = () => {
       createUploadChunkTask(file, id, successCallback, errorCallback);
     } else {
       const formData = new FormData();
-      formData.append("chunk", file);
-      formData.append("fileName", file.name);
-      formData.append("isChunk", "false");
-      formData.append("id", String(id));
+      formData.append('chunk', file);
+      formData.append('fileName', file.name);
+      formData.append('isChunk', 'false');
+      formData.append('id', String(id));
       uploadApi(formData)
         .then(() => {
           successCallback && successCallback();
@@ -100,13 +100,13 @@ export const useUpload = () => {
     const { fileName, chunks, whileRequests, errorChunks } = uploadChunkTask;
     for (let i = 0, len = chunks.length; i < len; i++) {
       const formData = new FormData();
-      formData.append("isChunk", "true");
-      formData.append("fileName", fileName);
-      formData.append("chunk", chunks[i].chunk);
-      formData.append("chunkCount", String(len));
-      formData.append("hashStr", String(chunks[i].hash));
-      formData.append("chunkIndex", String(chunks[i].index));
-      formData.append("id", String(id));
+      formData.append('isChunk', 'true');
+      formData.append('fileName', fileName);
+      formData.append('chunk', chunks[i].chunk);
+      formData.append('chunkCount', String(len));
+      formData.append('hashStr', String(chunks[i].hash));
+      formData.append('chunkIndex', String(chunks[i].index));
+      formData.append('id', String(id));
       const task = uploadApi(formData);
       task
         .catch(() => {

@@ -102,19 +102,19 @@
 </template>
 
 <script setup lang="ts" name="ProTable">
-import { ref, watch, provide, onMounted, unref, computed, reactive } from "vue";
-import { ElTable } from "element-plus";
-import { useTable } from "@/hooks/useTable";
-import { useSelection } from "@/hooks/useSelection";
-import { BreakPoint } from "@/components/Grid/interface";
-import { ColumnProps, TypeProps } from "@/components/ProTable/interface";
-import { Refresh, Operation, Search } from "@element-plus/icons-vue";
-import { handleProp } from "@/utils";
-import SearchForm from "@/components/SearchForm/index.vue";
-import Pagination from "./components/Pagination.vue";
-import ColSetting from "./components/ColSetting.vue";
-import TableColumn from "./components/TableColumn.vue";
-import Sortable from "sortablejs";
+import { ref, watch, provide, onMounted, unref, computed, reactive } from 'vue';
+import { ElTable } from 'element-plus';
+import { useTable } from '@/hooks/useTable';
+import { useSelection } from '@/hooks/useSelection';
+import { BreakPoint } from '@/components/Grid/interface';
+import { ColumnProps, TypeProps } from '@/components/ProTable/interface';
+import { Refresh, Operation, Search } from '@element-plus/icons-vue';
+import { handleProp } from '@/utils';
+import SearchForm from '@/components/SearchForm/index.vue';
+import Pagination from './components/Pagination.vue';
+import ColSetting from './components/ColSetting.vue';
+import TableColumn from './components/TableColumn.vue';
+import Sortable from 'sortablejs';
 
 export interface ProTableProps {
   columns: ColumnProps[]; // 列配置项  ==> 必传
@@ -127,7 +127,7 @@ export interface ProTableProps {
   pagination?: boolean; // 是否需要分页组件 ==> 非必传（默认为true）
   initParam?: any; // 初始化请求参数 ==> 非必传（默认为{}）
   border?: boolean; // 是否带有纵向边框 ==> 非必传（默认为true）
-  toolButton?: ("refresh" | "setting" | "search")[] | boolean; // 是否显示表格功能按钮 ==> 非必传（默认为true）
+  toolButton?: ('refresh' | 'setting' | 'search')[] | boolean; // 是否显示表格功能按钮 ==> 非必传（默认为true）
   rowKey?: string; // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
   searchCol?: number | Record<BreakPoint, number>; // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
 }
@@ -140,7 +140,7 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   initParam: {},
   border: true,
   toolButton: true,
-  rowKey: "id",
+  rowKey: 'id',
   searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
 });
 
@@ -148,18 +148,18 @@ const props = withDefaults(defineProps<ProTableProps>(), {
 const tableRef = ref<InstanceType<typeof ElTable>>();
 
 // column 列类型
-const columnTypes: TypeProps[] = ["selection", "radio", "index", "expand", "sort"];
+const columnTypes: TypeProps[] = ['selection', 'radio', 'index', 'expand', 'sort'];
 
 // 是否显示搜索模块
 const isShowSearch = ref(true);
 
 // 控制 ToolButton 显示
-const showToolButton = (key: "refresh" | "setting" | "search") => {
+const showToolButton = (key: 'refresh' | 'setting' | 'search') => {
   return Array.isArray(props.toolButton) ? props.toolButton.includes(key) : props.toolButton;
 };
 
 // 单选值
-const radio = ref("");
+const radio = ref('');
 
 // 表格多选 Hooks
 const { selectionChange, selectedList, selectedListIds, isSelected } = useSelection(props.rowKey);
@@ -203,10 +203,10 @@ const setEnumMap = async ({ prop, enum: enumValue }: ColumnProps) => {
   if (!enumValue) return;
 
   // 如果当前 enumMap 存在相同的值 return
-  if (enumMap.value.has(prop!) && (typeof enumValue === "function" || enumMap.value.get(prop!) === enumValue)) return;
+  if (enumMap.value.has(prop!) && (typeof enumValue === 'function' || enumMap.value.get(prop!) === enumValue)) return;
 
   // 当前 enum 为静态数据，则直接存储到 enumMap
-  if (typeof enumValue !== "function") return enumMap.value.set(prop!, unref(enumValue!));
+  if (typeof enumValue !== 'function') return enumMap.value.set(prop!, unref(enumValue!));
 
   // 为了防止接口执行慢，而存储慢，导致重复请求，所以预先存储为[]，接口返回后再二次存储
   enumMap.value.set(prop!, []);
@@ -217,7 +217,7 @@ const setEnumMap = async ({ prop, enum: enumValue }: ColumnProps) => {
 };
 
 // 注入 enumMap
-provide("enumMap", enumMap);
+provide('enumMap', enumMap);
 
 // 扁平化 columns 的方法
 const flatColumnsFunc = (columns: ColumnProps[], flatArr: ColumnProps[] = []) => {
@@ -257,7 +257,7 @@ searchColumns.value?.forEach((column, index) => {
 const colRef = ref();
 const colSetting = tableColumns!.filter(item => {
   const { type, prop, isShow } = item;
-  return !columnTypes.includes(type!) && prop !== "operation" && isShow;
+  return !columnTypes.includes(type!) && prop !== 'operation' && isShow;
 });
 const openColSetting = () => colRef.value.openColSetting();
 
@@ -270,24 +270,24 @@ const emit = defineEmits<{
 
 const _search = () => {
   search();
-  emit("search");
+  emit('search');
 };
 
 const _reset = () => {
   reset();
-  emit("reset");
+  emit('reset');
 };
 
 // 拖拽排序
 const dragSort = () => {
-  const tbody = document.querySelector(".el-table__body-wrapper tbody") as HTMLElement;
+  const tbody = document.querySelector('.el-table__body-wrapper tbody') as HTMLElement;
   Sortable.create(tbody, {
-    handle: ".move",
+    handle: '.move',
     animation: 300,
     onEnd({ newIndex, oldIndex }) {
       const [removedItem] = processTableData.value.splice(oldIndex!, 1);
       processTableData.value.splice(newIndex!, 0, removedItem);
-      emit("dargSort", { newIndex, oldIndex });
+      emit('dargSort', { newIndex, oldIndex });
     }
   });
 };

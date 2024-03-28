@@ -1,4 +1,4 @@
-import { createChunk } from "@/utils/file";
+import { createChunk } from '@/utils/file';
 
 self.onmessage = async e => {
   const { file, CHUNK_SIZE, startChunkIndex: start, endChunkIndex: end } = e.data;

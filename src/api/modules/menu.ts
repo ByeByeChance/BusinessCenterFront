@@ -1,12 +1,12 @@
-import { ResPage } from "@/api/interface";
-import { Menu as MenuNew } from "@/api/interface/menu";
-import http from "@/api";
+import { ResPage } from '@/api/interface';
+import { Menu as MenuNew } from '@/api/interface/menu';
+import http from '@/api';
 
 /**
  * @name 菜单模块
  */
 // 获取菜单列表
-export const getMenuList = (params: MenuNew.ReqMenuParams) => {
+export const getMenuList = (params?: MenuNew.ReqMenuParams) => {
   return http.get<ResPage<Menu.MenuOptions>>(`/api/menu/getMenuList`, params);
 };
 

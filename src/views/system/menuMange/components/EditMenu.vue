@@ -63,11 +63,11 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, ref } from "vue";
-import BaseDialog from "@/components/BaseDialog/index.vue";
-import SelectIcon from "@/components/SelectIcon/index.vue";
-import { Menu } from "@/api/interface/menu";
-import { ElMessage, FormInstance } from "element-plus";
+import { reactive, ref } from 'vue';
+import BaseDialog from '@/components/BaseDialog/index.vue';
+import SelectIcon from '@/components/SelectIcon/index.vue';
+import { Menu } from '@/api/interface/menu';
+import { ElMessage, FormInstance } from 'element-plus';
 
 interface Props {
   title: string;
@@ -77,7 +77,7 @@ interface Props {
 }
 const dialogVisible = ref(false);
 const props = ref<Props>({
-  title: "",
+  title: '',
   rowData: {}
 });
 
@@ -89,10 +89,10 @@ const acceptParams = (params: Props) => {
 
 const formRef = ref<FormInstance>();
 const rules = reactive({
-  title: [{ required: true, message: "请填写菜单标题" }],
-  name: [{ required: true, message: "请填写菜单name" }],
-  path: [{ required: true, message: "请填写菜单路径" }],
-  component: [{ required: true, message: "请填写组件路径" }]
+  title: [{ required: true, message: '请填写菜单标题' }],
+  name: [{ required: true, message: '请填写菜单name' }],
+  path: [{ required: true, message: '请填写菜单路径' }],
+  component: [{ required: true, message: '请填写组件路径' }]
 });
 
 const handleConfirm = () => {

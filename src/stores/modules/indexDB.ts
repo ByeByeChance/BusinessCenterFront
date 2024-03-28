@@ -1,14 +1,14 @@
-import { defineStore } from "pinia";
-import localforage from "localforage";
+import { defineStore } from 'pinia';
+import localforage from 'localforage';
 
 export const useIndexDBStore = defineStore({
-  id: "geeker-indexDB",
+  id: 'geeker-indexDB',
   state: () => ({
     filesDB: localforage.createInstance({
-      name: "filesDB"
+      name: 'filesDB'
     }),
     usersDB: localforage.createInstance({
-      name: "usersDB"
+      name: 'usersDB'
     })
   }),
   getters: {},

@@ -28,19 +28,19 @@
 </template>
 
 <script setup lang="ts">
-import { ref, reactive, onMounted } from "vue";
-import { useRouter } from "vue-router";
-import { HOME_URL } from "@/config";
-import { getTimeState } from "@/utils";
-import { Login } from "@/api/interface";
-import { ElNotification } from "element-plus";
-import { loginApi } from "@/api/modules/login";
-import { useUserStore } from "@/stores/modules/user";
-import { useTabsStore } from "@/stores/modules/tabs";
-import { useKeepAliveStore } from "@/stores/modules/keepAlive";
-import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
-import { CircleClose, UserFilled } from "@element-plus/icons-vue";
-import type { ElForm } from "element-plus";
+import { ref, reactive, onMounted } from 'vue';
+import { useRouter } from 'vue-router';
+import { HOME_URL } from '@/config';
+import { getTimeState } from '@/utils';
+import { Login } from '@/api/interface';
+import { ElNotification } from 'element-plus';
+import { loginApi } from '@/api/modules/login';
+import { useUserStore } from '@/stores/modules/user';
+import { useTabsStore } from '@/stores/modules/tabs';
+import { useKeepAliveStore } from '@/stores/modules/keepAlive';
+import { initDynamicRouter } from '@/routers/modules/dynamicRouter';
+import { CircleClose, UserFilled } from '@element-plus/icons-vue';
+import type { ElForm } from 'element-plus';
 // import md5 from "md5";
 
 const router = useRouter();
@@ -51,14 +51,14 @@ const keepAliveStore = useKeepAliveStore();
 type FormInstance = InstanceType<typeof ElForm>;
 const loginFormRef = ref<FormInstance>();
 const loginRules = reactive({
-  username: [{ required: true, message: "请输入用户名", trigger: "blur" }],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }]
+  username: [{ required: true, message: '请输入用户名', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }]
 });
 
 const loading = ref(false);
 const loginForm = reactive<Login.ReqLoginForm>({
-  username: "",
-  password: ""
+  username: '',
+  password: ''
 });
 
 // login
@@ -83,8 +83,8 @@ const login = (formEl: FormInstance | undefined) => {
       router.push(HOME_URL);
       ElNotification({
         title: getTimeState(),
-        message: "欢迎登录 Geeker-Admin",
-        type: "success",
+        message: '欢迎登录 Geeker-Admin',
+        type: 'success',
         duration: 3000
       });
     } finally {
@@ -103,7 +103,7 @@ onMounted(() => {
   // 监听 enter 事件（调用登录）
   document.onkeydown = (e: KeyboardEvent) => {
     e = (window.event as KeyboardEvent) || e;
-    if (e.code === "Enter" || e.code === "enter" || e.code === "NumpadEnter") {
+    if (e.code === 'Enter' || e.code === 'enter' || e.code === 'NumpadEnter') {
       if (loading.value) return;
       login(loginFormRef.value);
     }
@@ -112,5 +112,5 @@ onMounted(() => {
 </script>
 
 <style scoped lang="scss">
-@import "../index.scss";
+@import '../index.scss';
 </style>

@@ -3,15 +3,15 @@
 </template>
 
 <script setup lang="tsx" name="TableColumn">
-import { inject, ref, useSlots } from "vue";
-import { ColumnProps, RenderScope, HeaderRenderScope } from "@/components/ProTable/interface";
-import { filterEnum, formatValue, handleProp, handleRowAccordingToProp } from "@/utils";
+import { inject, ref, useSlots } from 'vue';
+import { ColumnProps, RenderScope, HeaderRenderScope } from '@/components/ProTable/interface';
+import { filterEnum, formatValue, handleProp, handleRowAccordingToProp } from '@/utils';
 
 defineProps<{ column: ColumnProps }>();
 
 const slots = useSlots();
 
-const enumMap = inject("enumMap", ref(new Map()));
+const enumMap = inject('enumMap', ref(new Map()));
 
 // 渲染表格数据
 const renderCellData = (item: ColumnProps, scope: RenderScope<any>) => {
@@ -22,7 +22,7 @@ const renderCellData = (item: ColumnProps, scope: RenderScope<any>) => {
 
 // 获取 tag 类型
 const getTagType = (item: ColumnProps, scope: RenderScope<any>) => {
-  return filterEnum(handleRowAccordingToProp(scope.row, item.prop!), enumMap.value.get(item.prop), item.fieldNames, "tag");
+  return filterEnum(handleRowAccordingToProp(scope.row, item.prop!), enumMap.value.get(item.prop), item.fieldNames, 'tag');
 };
 
 const RenderTableColumn = (item: ColumnProps) => {
@@ -31,8 +31,8 @@ const RenderTableColumn = (item: ColumnProps) => {
       {item.isShow && (
         <el-table-column
           {...item}
-          align={item.align ?? "center"}
-          showOverflowTooltip={item.showOverflowTooltip ?? item.prop !== "operation"}
+          align={item.align ?? 'center'}
+          showOverflowTooltip={item.showOverflowTooltip ?? item.prop !== 'operation'}
         >
           {{
             default: (scope: RenderScope<any>) => {

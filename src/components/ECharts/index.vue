@@ -3,16 +3,16 @@
 </template>
 
 <script setup lang="ts" name="ECharts">
-import { ref, onMounted, onBeforeUnmount, watch, computed, markRaw, nextTick } from "vue";
-import { EChartsType, ECElementEvent } from "echarts/core";
-import echarts, { ECOption } from "./config";
-import { useDebounceFn } from "@vueuse/core";
-import { useGlobalStore } from "@/stores/modules/global";
-import { storeToRefs } from "pinia";
+import { ref, onMounted, onBeforeUnmount, watch, computed, markRaw, nextTick } from 'vue';
+import { EChartsType, ECElementEvent } from 'echarts/core';
+import echarts, { ECOption } from './config';
+import { useDebounceFn } from '@vueuse/core';
+import { useGlobalStore } from '@/stores/modules/global';
+import { storeToRefs } from 'pinia';
 
 interface Props {
   option: ECOption;
-  renderer?: "canvas" | "svg";
+  renderer?: 'canvas' | 'svg';
   resize?: boolean;
   theme?: Object | string;
   width?: number | string;
@@ -21,14 +21,14 @@ interface Props {
 }
 
 const props = withDefaults(defineProps<Props>(), {
-  renderer: "canvas",
+  renderer: 'canvas',
   resize: true
 });
 
 const echartsStyle = computed(() => {
   return props.width || props.height
-    ? { height: props.height + "px", width: props.width + "px" }
-    : { height: "100%", width: "100%" };
+    ? { height: props.height + 'px', width: props.width + 'px' }
+    : { height: '100%', width: '100%' };
 });
 
 const chartRef = ref<HTMLDivElement | HTMLCanvasElement>();
@@ -56,7 +56,7 @@ const init = () => {
         renderer: props.renderer
       })
     );
-    chartInstance.value.on("click", handleClick);
+    chartInstance.value.on('click', handleClick);
     draw();
   }
 };
@@ -82,12 +82,12 @@ watch(
 
 onMounted(() => {
   nextTick(() => init());
-  window.addEventListener("resize", debouncedResize);
+  window.addEventListener('resize', debouncedResize);
 });
 
 onBeforeUnmount(() => {
   chartInstance.value?.dispose();
-  window.removeEventListener("resize", debouncedResize);
+  window.removeEventListener('resize', debouncedResize);
 });
 
 defineExpose({

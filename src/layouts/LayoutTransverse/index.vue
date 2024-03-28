@@ -35,12 +35,12 @@
 </template>
 
 <script setup lang="ts" name="layoutTransverse">
-import { computed } from "vue";
-import { useAuthStore } from "@/stores/modules/auth";
-import { useRoute, useRouter } from "vue-router";
-import Main from "@/layouts/components/Main/index.vue";
-import ToolBarRight from "@/layouts/components/Header/ToolBarRight.vue";
-import SubMenu from "@/layouts/components/Menu/SubMenu.vue";
+import { computed } from 'vue';
+import { useAuthStore } from '@/stores/modules/auth';
+import { useRoute, useRouter } from 'vue-router';
+import Main from '@/layouts/components/Main/index.vue';
+import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
+import SubMenu from '@/layouts/components/Menu/SubMenu.vue';
 
 const title = import.meta.env.VITE_GLOB_APP_TITLE;
 
@@ -51,11 +51,11 @@ const menuList = computed(() => authStore.showMenuListGet);
 const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu : route.path) as string);
 
 const handleClickMenu = (subItem: Menu.MenuOptions) => {
-  if (subItem.meta.isLink) return window.open(subItem.meta.isLink, "_blank");
+  if (subItem.meta.isLink) return window.open(subItem.meta.isLink, '_blank');
   router.push(subItem.path);
 };
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

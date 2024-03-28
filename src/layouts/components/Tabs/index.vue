@@ -17,14 +17,14 @@
 </template>
 
 <script setup lang="ts">
-import Sortable from "sortablejs";
-import { ref, computed, watch, onMounted } from "vue";
-import { useRoute, useRouter } from "vue-router";
-import { useGlobalStore } from "@/stores/modules/global";
-import { useTabsStore } from "@/stores/modules/tabs";
-import { useAuthStore } from "@/stores/modules/auth";
-import { TabsPaneContext, TabPaneName } from "element-plus";
-import MoreButton from "./components/MoreButton.vue";
+import Sortable from 'sortablejs';
+import { ref, computed, watch, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
+import { useGlobalStore } from '@/stores/modules/global';
+import { useTabsStore } from '@/stores/modules/tabs';
+import { useAuthStore } from '@/stores/modules/auth';
+import { TabsPaneContext, TabPaneName } from 'element-plus';
+import MoreButton from './components/MoreButton.vue';
 
 const route = useRoute();
 const router = useRouter();
@@ -79,8 +79,8 @@ const initTabs = () => {
 
 // tabs 拖拽排序
 const tabsDrop = () => {
-  Sortable.create(document.querySelector(".el-tabs__nav") as HTMLElement, {
-    draggable: ".el-tabs__item",
+  Sortable.create(document.querySelector('.el-tabs__nav') as HTMLElement, {
+    draggable: '.el-tabs__item',
     animation: 300,
     onEnd({ newIndex, oldIndex }) {
       const tabsList = [...tabStore.tabsMenuList];
@@ -104,5 +104,5 @@ const tabRemove = (fullPath: TabPaneName) => {
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

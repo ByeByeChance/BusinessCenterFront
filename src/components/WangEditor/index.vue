@@ -14,12 +14,12 @@
 </template>
 
 <script setup lang="ts" name="WangEditor">
-import { nextTick, computed, inject, shallowRef, onBeforeUnmount } from "vue";
-import { IToolbarConfig, IEditorConfig } from "@wangeditor/editor";
-import { Editor, Toolbar } from "@wangeditor/editor-for-vue";
-import { uploadImg, uploadVideo } from "@/api/modules/upload";
-import "@wangeditor/editor/dist/css/style.css";
-import { formContextKey, formItemContextKey } from "element-plus";
+import { nextTick, computed, inject, shallowRef, onBeforeUnmount } from 'vue';
+import { IToolbarConfig, IEditorConfig } from '@wangeditor/editor';
+import { Editor, Toolbar } from '@wangeditor/editor-for-vue';
+import { uploadImg, uploadVideo } from '@/api/modules/upload';
+import '@wangeditor/editor/dist/css/style.css';
+import { formContextKey, formItemContextKey } from 'element-plus';
 
 // 富文本 DOM 元素
 const editorRef = shallowRef();
@@ -35,7 +35,7 @@ interface RichEditorProps {
   toolbarConfig?: Partial<IToolbarConfig>; // 工具栏配置 ==> 非必传（默认为空）
   editorConfig?: Partial<IEditorConfig>; // 编辑器配置 ==> 非必传（默认为空）
   height?: string; // 富文本高度 ==> 非必传（默认为 500px）
-  mode?: "default" | "simple"; // 富文本模式 ==> 非必传（默认为 default）
+  mode?: 'default' | 'simple'; // 富文本模式 ==> 非必传（默认为 default）
   hideToolBar?: boolean; // 是否隐藏工具栏 ==> 非必传（默认为false）
   disabled?: boolean; // 是否禁用编辑器 ==> 非必传（默认为false）
 }
@@ -47,12 +47,12 @@ const props = withDefaults(defineProps<RichEditorProps>(), {
   },
   editorConfig: () => {
     return {
-      placeholder: "请输入内容...",
+      placeholder: '请输入内容...',
       MENU_CONF: {}
     };
   },
-  height: "500px",
-  mode: "default",
+  height: '500px',
+  mode: 'default',
   hideToolBar: false,
   disabled: false
 });
@@ -71,8 +71,8 @@ if (self_disabled.value) nextTick(() => editorRef.value.disable());
 
 // 富文本的内容监听，触发父组件改变，实现双向数据绑定
 const emit = defineEmits<{
-  "update:value": [value: string];
-  "check-validate": [];
+  'update:value': [value: string];
+  'check-validate': [];
 }>();
 const valueHtml = computed({
   get() {
@@ -80,8 +80,8 @@ const valueHtml = computed({
   },
   set(val: string) {
     // 防止富文本内容为空时，校验失败
-    if (editorRef.value.isEmpty()) val = "";
-    emit("update:value", val);
+    if (editorRef.value.isEmpty()) val = '';
+    emit('update:value', val);
   }
 });
 
@@ -91,11 +91,11 @@ const valueHtml = computed({
  * @param insertFn 上传成功后的回调函数（插入到富文本编辑器中）
  * */
 type InsertFnTypeImg = (url: string, alt?: string, href?: string) => void;
-props.editorConfig.MENU_CONF!["uploadImage"] = {
+props.editorConfig.MENU_CONF!['uploadImage'] = {
   async customUpload(file: File, insertFn: InsertFnTypeImg) {
     if (!uploadImgValidate(file)) return;
     let formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     try {
       const { data } = await uploadImg(formData);
       insertFn(data.fileUrl);
@@ -117,11 +117,11 @@ const uploadImgValidate = (file: File): boolean => {
  * @param insertFn 上传成功后的回调函数（插入到富文本编辑器中）
  * */
 type InsertFnTypeVideo = (url: string, poster?: string) => void;
-props.editorConfig.MENU_CONF!["uploadVideo"] = {
+props.editorConfig.MENU_CONF!['uploadVideo'] = {
   async customUpload(file: File, insertFn: InsertFnTypeVideo) {
     if (!uploadVideoValidate(file)) return;
     let formData = new FormData();
-    formData.append("file", file);
+    formData.append('file', file);
     try {
       const { data } = await uploadVideo(formData);
       insertFn(data.fileUrl);
@@ -154,5 +154,5 @@ defineExpose({
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

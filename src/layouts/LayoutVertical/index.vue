@@ -31,14 +31,14 @@
 </template>
 
 <script setup lang="ts" name="layoutVertical">
-import { computed } from "vue";
-import { useRoute } from "vue-router";
-import { useAuthStore } from "@/stores/modules/auth";
-import { useGlobalStore } from "@/stores/modules/global";
-import Main from "@/layouts/components/Main/index.vue";
-import ToolBarLeft from "@/layouts/components/Header/ToolBarLeft.vue";
-import ToolBarRight from "@/layouts/components/Header/ToolBarRight.vue";
-import SubMenu from "@/layouts/components/Menu/SubMenu.vue";
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
+import { useAuthStore } from '@/stores/modules/auth';
+import { useGlobalStore } from '@/stores/modules/global';
+import Main from '@/layouts/components/Main/index.vue';
+import ToolBarLeft from '@/layouts/components/Header/ToolBarLeft.vue';
+import ToolBarRight from '@/layouts/components/Header/ToolBarRight.vue';
+import SubMenu from '@/layouts/components/Menu/SubMenu.vue';
 
 const title = import.meta.env.VITE_GLOB_APP_TITLE;
 
@@ -52,5 +52,5 @@ const activeMenu = computed(() => (route.meta.activeMenu ? route.meta.activeMenu
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

@@ -31,7 +31,7 @@
 </template>
 
 <script setup lang="ts" name="selectFilter">
-import { ref, watch } from "vue";
+import { ref, watch } from 'vue';
 
 interface OptionsProps {
   value: string | number;
@@ -62,8 +62,8 @@ watch(
   () => props.defaultValues,
   () => {
     props.data.forEach(item => {
-      if (item.multiple) selected.value[item.key] = props.defaultValues[item.key] ?? [""];
-      else selected.value[item.key] = props.defaultValues[item.key] ?? "";
+      if (item.multiple) selected.value[item.key] = props.defaultValues[item.key] ?? [''];
+      else selected.value[item.key] = props.defaultValues[item.key] ?? '';
     });
   },
   { deep: true, immediate: true }
@@ -101,10 +101,10 @@ const select = (item: SelectDataProps, option: OptionsProps) => {
       if (selected.value[item.key].includes(item.options[0].value)) selected.value[item.key].splice(0, 1);
     }
   }
-  emit("change", selected.value);
+  emit('change', selected.value);
 };
 </script>
 
 <style scoped lang="scss">
-@import "./index.scss";
+@import './index.scss';
 </style>

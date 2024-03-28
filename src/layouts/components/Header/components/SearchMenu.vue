@@ -28,10 +28,10 @@
 </template>
 
 <script setup lang="ts">
-import { ref, computed, nextTick } from "vue";
-import { Search } from "@element-plus/icons-vue";
-import { useRouter } from "vue-router";
-import { useAuthStore } from "@/stores/modules/auth";
+import { ref, computed, nextTick } from 'vue';
+import { Search } from '@element-plus/icons-vue';
+import { useRouter } from 'vue-router';
+import { useAuthStore } from '@/stores/modules/auth';
 const router = useRouter();
 const authStore = useAuthStore();
 const menuList = computed(() => authStore.flatMenuListGet.filter(item => !item.meta.isHide));
@@ -44,7 +44,7 @@ const searchMenuList = (queryString: string, cb: Function) => {
 // 打开搜索框
 const isShowSearch = ref(false);
 const menuInputRef = ref();
-const searchMenu = ref("");
+const searchMenu = ref('');
 const handleOpen = () => {
   isShowSearch.value = true;
   nextTick(() => {
@@ -71,8 +71,8 @@ const filterNodeMethod = (queryString: string) => {
 
 // 点击菜单跳转
 const handleClickMenu = (menuItem: Menu.MenuOptions | Record<string, any>) => {
-  searchMenu.value = "";
-  if (menuItem.meta.isLink) window.open(menuItem.meta.isLink, "_blank");
+  searchMenu.value = '';
+  if (menuItem.meta.isLink) window.open(menuItem.meta.isLink, '_blank');
   else router.push(menuItem.path);
   closeSearch();
 };

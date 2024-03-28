@@ -18,8 +18,8 @@ import {
   onActivated,
   VNodeArrayChildren,
   VNode
-} from "vue";
-import type { BreakPoint } from "./interface/index";
+} from 'vue';
+import type { BreakPoint } from './interface/index';
 
 type Props = {
   cols?: number | Record<BreakPoint, number>;
@@ -38,17 +38,17 @@ const props = withDefaults(defineProps<Props>(), {
 onBeforeMount(() => props.collapsed && findIndex());
 onMounted(() => {
   resize({ target: { innerWidth: window.innerWidth } } as unknown as UIEvent);
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
 });
 onActivated(() => {
   resize({ target: { innerWidth: window.innerWidth } } as unknown as UIEvent);
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
 });
 onUnmounted(() => {
-  window.removeEventListener("resize", resize);
+  window.removeEventListener('resize', resize);
 });
 onDeactivated(() => {
-  window.removeEventListener("resize", resize);
+  window.removeEventListener('resize', resize);
 });
 
 // 监听屏幕变化
@@ -56,40 +56,40 @@ const resize = (e: UIEvent) => {
   let width = (e.target as Window).innerWidth;
   switch (!!width) {
     case width < 768:
-      breakPoint.value = "xs";
+      breakPoint.value = 'xs';
       break;
     case width >= 768 && width < 992:
-      breakPoint.value = "sm";
+      breakPoint.value = 'sm';
       break;
     case width >= 992 && width < 1200:
-      breakPoint.value = "md";
+      breakPoint.value = 'md';
       break;
     case width >= 1200 && width < 1920:
-      breakPoint.value = "lg";
+      breakPoint.value = 'lg';
       break;
     case width >= 1920:
-      breakPoint.value = "xl";
+      breakPoint.value = 'xl';
       break;
   }
 };
 
 // 注入 gap 间距
-provide("gap", Array.isArray(props.gap) ? props.gap[0] : props.gap);
+provide('gap', Array.isArray(props.gap) ? props.gap[0] : props.gap);
 
 // 注入响应式断点
-let breakPoint = ref<BreakPoint>("xl");
-provide("breakPoint", breakPoint);
+let breakPoint = ref<BreakPoint>('xl');
+provide('breakPoint', breakPoint);
 
 // 注入要开始折叠的 index
 const hiddenIndex = ref(-1);
-provide("shouldHiddenIndex", hiddenIndex);
+provide('shouldHiddenIndex', hiddenIndex);
 
 // 注入 cols
 const gridCols = computed(() => {
-  if (typeof props.cols === "object") return props.cols[breakPoint.value] ?? props.cols;
+  if (typeof props.cols === 'object') return props.cols[breakPoint.value] ?? props.cols;
   return props.cols;
 });
-provide("cols", gridCols);
+provide('cols', gridCols);
 
 // 寻找需要开始折叠的字段 index
 const slots = useSlots().default!();
@@ -99,9 +99,9 @@ const findIndex = () => {
   let suffix: VNode | null = null;
   slots.forEach((slot: any) => {
     // suffix
-    if (typeof slot.type === "object" && slot.type.name === "GridItem" && slot.props?.suffix !== undefined) suffix = slot;
+    if (typeof slot.type === 'object' && slot.type.name === 'GridItem' && slot.props?.suffix !== undefined) suffix = slot;
     // slot children
-    if (typeof slot.type === "symbol" && Array.isArray(slot.children)) fields.push(...slot.children);
+    if (typeof slot.type === 'symbol' && Array.isArray(slot.children)) fields.push(...slot.children);
   });
 
   // 计算 suffix 所占用的列
@@ -120,7 +120,7 @@ const findIndex = () => {
       if (Number(prev) > props.collapsedRows * gridCols.value - suffixCols) {
         hiddenIndex.value = index;
         find = true;
-        throw "find it";
+        throw 'find it';
       }
       return prev;
     }, 0);
@@ -149,15 +149,15 @@ watch(
 
 // 设置间距
 const gridGap = computed(() => {
-  if (typeof props.gap === "number") return `${props.gap}px`;
+  if (typeof props.gap === 'number') return `${props.gap}px`;
   if (Array.isArray(props.gap)) return `${props.gap[1]}px ${props.gap[0]}px`;
-  return "unset";
+  return 'unset';
 });
 
 // 设置 style
 const style = computed(() => {
   return {
-    display: "grid",
+    display: 'grid',
     gridGap: gridGap.value,
     gridTemplateColumns: `repeat(${gridCols.value}, minmax(0, 1fr))`
   };

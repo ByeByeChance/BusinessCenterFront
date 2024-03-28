@@ -1,10 +1,10 @@
-import { createRouter, createWebHashHistory, createWebHistory } from "vue-router";
-import { useUserStore } from "@/stores/modules/user";
-import { useAuthStore } from "@/stores/modules/auth";
-import { LOGIN_URL, ROUTER_WHITE_LIST } from "@/config";
-import { initDynamicRouter } from "@/routers/modules/dynamicRouter";
-import { staticRouter, errorRouter } from "@/routers/modules/staticRouter";
-import NProgress from "@/config/nprogress";
+import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router';
+import { useUserStore } from '@/stores/modules/user';
+import { useAuthStore } from '@/stores/modules/auth';
+import { LOGIN_URL, ROUTER_WHITE_LIST } from '@/config';
+import { initDynamicRouter } from '@/routers/modules/dynamicRouter';
+import { staticRouter, errorRouter } from '@/routers/modules/staticRouter';
+import NProgress from '@/config/nprogress';
 
 const mode = import.meta.env.VITE_ROUTER_MODE;
 
@@ -92,7 +92,7 @@ export const resetRouter = () => {
  * */
 router.onError(error => {
   NProgress.done();
-  console.warn("路由错误", error.message);
+  console.warn('路由错误', error.message);
 });
 
 /**

@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts" name="SvgIcon">
-import { computed, CSSProperties } from "vue";
+import { computed, CSSProperties } from 'vue';
 
 interface SvgProps {
   name: string; // 图标的名称 ==> 必传
@@ -14,8 +14,8 @@ interface SvgProps {
 }
 
 const props = withDefaults(defineProps<SvgProps>(), {
-  prefix: "icon",
-  iconStyle: () => ({ width: "100px", height: "100px" })
+  prefix: 'icon',
+  iconStyle: () => ({ width: '100px', height: '100px' })
 });
 
 const symbolId = computed(() => `#${props.prefix}-${props.name}`);

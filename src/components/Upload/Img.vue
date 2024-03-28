@@ -48,11 +48,11 @@
 </template>
 
 <script setup lang="ts" name="UploadImg">
-import { ref, computed, inject } from "vue";
-import { generateUUID } from "@/utils";
-import { uploadImg } from "@/api/modules/upload";
-import { ElNotification, formContextKey, formItemContextKey } from "element-plus";
-import type { UploadProps, UploadRequestOptions } from "element-plus";
+import { ref, computed, inject } from 'vue';
+import { generateUUID } from '@/utils';
+import { uploadImg } from '@/api/modules/upload';
+import { ElNotification, formContextKey, formItemContextKey } from 'element-plus';
+import type { UploadProps, UploadRequestOptions } from 'element-plus';
 
 interface UploadFileProps {
   imageUrl: string; // 图片地址 ==> 必传
@@ -68,18 +68,18 @@ interface UploadFileProps {
 
 // 接受父组件参数
 const props = withDefaults(defineProps<UploadFileProps>(), {
-  imageUrl: "",
+  imageUrl: '',
   drag: true,
   disabled: false,
   fileSize: 5,
-  fileType: () => ["image/jpeg", "image/png", "image/gif"],
-  height: "150px",
-  width: "150px",
-  borderRadius: "8px"
+  fileType: () => ['image/jpeg', 'image/png', 'image/gif'],
+  height: '150px',
+  width: '150px',
+  borderRadius: '8px'
 });
 
 // 生成组件唯一id
-const uuid = ref("id-" + generateUUID());
+const uuid = ref('id-' + generateUUID());
 
 // 查看图片
 const imgViewVisible = ref(false);
@@ -97,15 +97,15 @@ const self_disabled = computed(() => {
  * @param options upload 所有配置项
  * */
 const emit = defineEmits<{
-  "update:imageUrl": [value: string];
+  'update:imageUrl': [value: string];
 }>();
 const handleHttpUpload = async (options: UploadRequestOptions) => {
   let formData = new FormData();
-  formData.append("file", options.file);
+  formData.append('file', options.file);
   try {
     const api = props.api ?? uploadImg;
     const { data } = await api(formData);
-    emit("update:imageUrl", data.fileUrl);
+    emit('update:imageUrl', data.fileUrl);
     // 调用 el-form 内部的校验方法（可自动校验）
     formItemContext?.prop && formContext?.validateField([formItemContext.prop as string]);
   } catch (error) {
@@ -117,7 +117,7 @@ const handleHttpUpload = async (options: UploadRequestOptions) => {
  * @description 删除图片
  * */
 const deleteImg = () => {
-  emit("update:imageUrl", "");
+  emit('update:imageUrl', '');
 };
 
 /**
@@ -125,28 +125,28 @@ const deleteImg = () => {
  * */
 const editImg = () => {
   const dom = document.querySelector(`#${uuid.value} .el-upload__input`);
-  dom && dom.dispatchEvent(new MouseEvent("click"));
+  dom && dom.dispatchEvent(new MouseEvent('click'));
 };
 
 /**
  * @description 文件上传之前判断
  * @param rawFile 选择的文件
  * */
-const beforeUpload: UploadProps["beforeUpload"] = rawFile => {
+const beforeUpload: UploadProps['beforeUpload'] = rawFile => {
   const imgSize = rawFile.size / 1024 / 1024 < props.fileSize;
   const imgType = props.fileType.includes(rawFile.type as File.ImageMimeType);
   if (!imgType)
     ElNotification({
-      title: "温馨提示",
-      message: "上传图片不符合所需的格式！",
-      type: "warning"
+      title: '温馨提示',
+      message: '上传图片不符合所需的格式！',
+      type: 'warning'
     });
   if (!imgSize)
     setTimeout(() => {
       ElNotification({
-        title: "温馨提示",
+        title: '温馨提示',
         message: `上传图片大小不能超过 ${props.fileSize}M！`,
-        type: "warning"
+        type: 'warning'
       });
     }, 0);
   return imgType && imgSize;
@@ -157,9 +157,9 @@ const beforeUpload: UploadProps["beforeUpload"] = rawFile => {
  * */
 const uploadSuccess = () => {
   ElNotification({
-    title: "温馨提示",
-    message: "图片上传成功！",
-    type: "success"
+    title: '温馨提示',
+    message: '图片上传成功！',
+    type: 'success'
   });
 };
 
@@ -168,9 +168,9 @@ const uploadSuccess = () => {
  * */
 const uploadError = () => {
   ElNotification({
-    title: "温馨提示",
-    message: "图片上传失败，请您重新上传！",
-    type: "error"
+    title: '温馨提示',
+    message: '图片上传失败，请您重新上传！',
+    type: 'error'
   });
 };
 </script>

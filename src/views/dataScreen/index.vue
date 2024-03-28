@@ -110,18 +110,18 @@
 </template>
 
 <script setup lang="ts" name="dataScreen">
-import { ref, onMounted, onBeforeUnmount } from "vue";
-import { HOME_URL } from "@/config";
-import { useRouter } from "vue-router";
-import AgeRatioChart from "./components/AgeRatioChart.vue";
-import AnnualUseChart from "./components/AnnualUseChart.vue";
-import ChinaMapChart from "./components/ChinaMapChart.vue";
-import HotPlateChart from "./components/HotPlateChart.vue";
-import MaleFemaleRatioChart from "./components/MaleFemaleRatioChart.vue";
-import OverNext30Chart from "./components/OverNext30Chart.vue";
-import PlatformSourceChart from "./components/PlatformSourceChart.vue";
-import RealTimeAccessChart from "./components/RealTimeAccessChart.vue";
-import dayjs from "dayjs";
+import { ref, onMounted, onBeforeUnmount } from 'vue';
+import { HOME_URL } from '@/config';
+import { useRouter } from 'vue-router';
+import AgeRatioChart from './components/AgeRatioChart.vue';
+import AnnualUseChart from './components/AnnualUseChart.vue';
+import ChinaMapChart from './components/ChinaMapChart.vue';
+import HotPlateChart from './components/HotPlateChart.vue';
+import MaleFemaleRatioChart from './components/MaleFemaleRatioChart.vue';
+import OverNext30Chart from './components/OverNext30Chart.vue';
+import PlatformSourceChart from './components/PlatformSourceChart.vue';
+import RealTimeAccessChart from './components/RealTimeAccessChart.vue';
+import dayjs from 'dayjs';
 
 const router = useRouter();
 const dataScreenRef = ref<HTMLElement | null>(null);
@@ -132,7 +132,7 @@ onMounted(() => {
     dataScreenRef.value.style.width = `1920px`;
     dataScreenRef.value.style.height = `1080px`;
   }
-  window.addEventListener("resize", resize);
+  window.addEventListener('resize', resize);
 });
 
 // 设置响应式
@@ -150,17 +150,17 @@ const getScale = (width = 1920, height = 1080) => {
 };
 
 // 获取当前时间
-let timer: NodeJS.Timer | null = null;
-let time = ref<string>(dayjs().format("YYYY年MM月DD HH:mm:ss"));
+let timer: NodeJS.Timer | number | null = null;
+let time = ref<string>(dayjs().format('YYYY年MM月DD HH:mm:ss'));
 timer = setInterval(() => {
-  time.value = dayjs().format("YYYY年MM月DD HH:mm:ss");
+  time.value = dayjs().format('YYYY年MM月DD HH:mm:ss');
 }, 1000);
 
 onBeforeUnmount(() => {
-  window.removeEventListener("resize", resize);
-  clearInterval(timer!);
+  window.removeEventListener('resize', resize);
+  timer && clearInterval(timer as number);
 });
 </script>
 <style lang="scss" scoped>
-@import "./index.scss";
+@import './index.scss';
 </style>
