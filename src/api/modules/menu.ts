@@ -7,7 +7,7 @@ import http from '@/api';
  */
 // 获取菜单列表
 export const getMenuList = (params?: MenuNew.ReqMenuParams) => {
-  return http.get<ResPage<Menu.MenuOptions>>(`/api/menu/getMenuList`, params);
+  return http.get<ResPage<Menu.MenuOptions>>(`/api/menu/getMenuList`, params, { loading: false });
 };
 
 // 新增菜单

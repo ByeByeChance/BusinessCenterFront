@@ -38,6 +38,7 @@
       :data="processTableData"
       :border="border"
       :row-key="rowKey"
+      v-loading="loading"
       @selection-change="selectionChange"
     >
       <!-- 默认插槽 -->
@@ -130,6 +131,7 @@ export interface ProTableProps {
   toolButton?: ('refresh' | 'setting' | 'search')[] | boolean; // 是否显示表格功能按钮 ==> 非必传（默认为true）
   rowKey?: string; // 行数据的 Key，用来优化 Table 的渲染，当表格数据多选时，所指定的 id ==> 非必传（默认为 id）
   searchCol?: number | Record<BreakPoint, number>; // 表格搜索项 每列占比配置 ==> 非必传 { xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }
+  showLoading?: boolean; // 是否显示加载中状态 ==> 非必传（默认为true）
 }
 
 // 接受父组件参数，配置默认值
@@ -141,7 +143,8 @@ const props = withDefaults(defineProps<ProTableProps>(), {
   border: true,
   toolButton: true,
   rowKey: 'id',
-  searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 })
+  searchCol: () => ({ xs: 1, sm: 2, md: 2, lg: 3, xl: 4 }),
+  showLoading: true
 });
 
 // table 实例
@@ -165,8 +168,18 @@ const radio = ref('');
 const { selectionChange, selectedList, selectedListIds, isSelected } = useSelection(props.rowKey);
 
 // 表格操作 Hooks
-const { tableData, pageable, searchParam, searchInitParam, getTableList, search, reset, handleSizeChange, handleCurrentChange } =
-  useTable(props.requestApi, props.initParam, props.pagination, props.dataCallback, props.requestError);
+const {
+  loading,
+  tableData,
+  pageable,
+  searchParam,
+  searchInitParam,
+  getTableList,
+  search,
+  reset,
+  handleSizeChange,
+  handleCurrentChange
+} = useTable(props.requestApi, props.initParam, props.pagination, props.dataCallback, props.requestError, props.showLoading);
 
 // 清空选中数据列表
 const clearSelection = () => tableRef.value!.clearSelection();

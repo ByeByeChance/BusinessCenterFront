@@ -15,3 +15,12 @@ export const userStatus = [
   { label: '启用', value: 1, tagType: 'success' },
   { label: '禁用', value: 0, tagType: 'danger' }
 ];
+
+/**
+ * @description：用户角色 1普通账号, 2是主账号, 3是超管
+ */
+export const userRole = [
+  { label: '普通用户', value: 1 },
+  { label: '主账号', value: 2 },
+  { label: '超级管理员', value: 3 }
+];

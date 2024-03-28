@@ -21,6 +21,7 @@
       </template>
       <!-- 菜单操作 -->
       <template #operation="scope">
+        <el-button type="primary" link :icon="View" @click="openEditMenuDialog('详情', scope.row)"></el-button>
         <el-button type="primary" link :icon="EditPen" @click="openEditMenuDialog('编辑', scope.row)"></el-button>
         <el-button type="danger" link :icon="Delete"></el-button>
       </template>
@@ -32,7 +33,7 @@
 <script setup lang="ts" name="menuMange">
 import { ref } from 'vue';
 import { ColumnProps } from '@/components/ProTable/interface';
-import { Delete, EditPen, CirclePlus } from '@element-plus/icons-vue';
+import { Delete, EditPen, CirclePlus, View } from '@element-plus/icons-vue';
 import ProTable from '@/components/ProTable/index.vue';
 import EditMenu from './components/EditMenu.vue';
 import { getMenuList, addMenu, updateMenu } from '@/api/modules/menu';

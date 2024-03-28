@@ -4,10 +4,17 @@
     @confirm="handleConfirm"
     @close="dialogVisible = false"
     :title="props.title"
-    :show-footer="true"
+    :show-footer="props.title === '详情' ? false : true"
     width="50%"
   >
-    <el-form ref="formRef" :model="props.rowData" label-suffix=" :" :rules="rules" label-width="auto">
+    <el-form
+      ref="formRef"
+      :model="props.rowData"
+      label-suffix=" :"
+      :rules="rules"
+      label-width="auto"
+      :disabled="props.title === '详情'"
+    >
       <el-form-item label="菜单标题" prop="title">
         <el-input v-model="props.rowData!.title" placeholder="请填写菜单标题" clearable></el-input>
       </el-form-item>

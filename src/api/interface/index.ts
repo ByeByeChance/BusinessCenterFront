@@ -1,6 +1,6 @@
 // 请求响应参数（不包含data）
 export interface Result {
-  code: string;
+  code: number;
   message: string;
 }
 
@@ -53,8 +53,9 @@ export namespace User {
     idCard: string;
     email: string;
     address: string;
-    createTime: string[];
+    createdTime: string[];
     status: number;
+    roleId: number;
   }
   export interface ResUserList {
     id: string;
@@ -68,7 +69,19 @@ export namespace User {
     status: number;
     avatar: string;
     photo: any[];
+    roleId: number;
+    lastLoginDate: string;
+    createdTime: string;
+    updatedTime: string;
     children?: ResUserList[];
+  }
+  export interface ReqUser {
+    id?: string;
+    username: string;
+    password: string;
+    email: string;
+    roleId: number;
+    status: number;
   }
   export interface ResStatus {
     userLabel: string;

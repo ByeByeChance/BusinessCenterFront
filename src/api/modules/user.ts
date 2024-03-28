@@ -6,48 +6,38 @@ import http from '@/api';
  * @name 用户管理模块
  */
 // 获取用户列表
-export const getUserList = (params: User.ReqUserParams) => {
-  return http.post<ResPage<User.ResUserList>>(PORT1 + `/user/list`, params);
-};
-
-// 获取树形用户列表
-export const getUserTreeList = (params: User.ReqUserParams) => {
-  return http.post<ResPage<User.ResUserList>>(PORT1 + `/user/tree/list`, params);
+export const getUserList = (params: Partial<User.ReqUserParams>) => {
+  return http.get<ResPage<User.ResUserList>>(`/api/user/getUserList`, params, { loading: false });
 };
 
 // 新增用户
 export const addUser = (params: { id: string }) => {
-  return http.post(PORT1 + `/user/add`, params);
-};
-
-// 批量添加用户
-export const BatchAddUser = (params: FormData) => {
-  return http.post(PORT1 + `/user/import`, params);
+  return http.post(`/api/user/addUser`, params);
 };
 
 // 编辑用户
-export const editUser = (params: { id: string }) => {
-  return http.post(PORT1 + `/user/edit`, params);
+export const updateUser = (params: { id: string }) => {
+  return http.post(`/api/user/updateUser`, params);
 };
 
 // 删除用户
 export const deleteUser = (params: { id: string[] }) => {
-  return http.post(PORT1 + `/user/delete`, params);
+  return http.delete(`/api/user/deleteUser`, params);
 };
 
 // 切换用户状态
-export const changeUserStatus = (params: { id: string; status: number }) => {
-  return http.post(PORT1 + `/user/change`, params);
+export const updateUserStatus = (params: { id: string; status: number }) => {
+  return http.post(`/api/user/updateUserStatus`, params);
 };
 
 // 重置用户密码
 export const resetUserPassWord = (params: { id: string }) => {
-  return http.post(PORT1 + `/user/rest_password`, params);
+  return http.post(`/api/user/resetPassword`, params);
 };
 
 // 导出用户数据
-export const exportUserInfo = (params: User.ReqUserParams) => {
-  return http.download(PORT1 + `/user/export`, params);
+export const exportUserList = (params: User.ReqUserParams) => {
+  return http.download(PORT1 + `/api/user/exportUserList`, params);
 };
 
 // 获取用户状态字典
