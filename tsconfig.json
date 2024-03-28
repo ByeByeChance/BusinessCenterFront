@@ -24,10 +24,13 @@
     "skipLibCheck": true,
     "noEmit": true,
     "baseUrl": "./",
+    "allowJs": true,
     "paths": {
       "@": ["src"],
       "@/*": ["src/*"]
-    }
+    },
+    "allowSyntheticDefaultImports": true /* 允许默认导入 */,
+    "forceConsistentCasingInFileNames": true /* Ensure that casing is correct in imports. */
   },
   "include": [
     "src/**/*.ts",
