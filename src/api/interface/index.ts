@@ -53,7 +53,7 @@ export namespace User {
     idCard: string;
     email: string;
     address: string;
-    createdTime: string[];
+    createTime: string[];
     status: number;
     roleId: number;
   }
@@ -71,8 +71,7 @@ export namespace User {
     photo: any[];
     roleId: number;
     lastLoginDate: string;
-    createdTime: string;
-    updatedTime: string;
+    updateTime: string;
     children?: ResUserList[];
   }
   export interface ReqUser {

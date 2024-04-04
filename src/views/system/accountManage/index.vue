@@ -103,10 +103,10 @@ const columns: ColumnProps<User.ResUserList>[] = [
     render: ({ row }) => (row.lastLoginDate ? dayjs(row.lastLoginDate).format('YYYY-MM-DD HH:mm:ss') : '--')
   },
   {
-    prop: 'createdTime',
+    prop: 'createTime',
     label: '创建时间',
     width: 250,
-    render: ({ row }) => (row.createdTime ? dayjs(row.createdTime).format('YYYY-MM-DD HH:mm:ss') : '--')
+    render: ({ row }) => (row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm:ss') : '--')
   },
   { prop: 'operation', label: '操作', width: 150, fixed: 'right' }
 ];
