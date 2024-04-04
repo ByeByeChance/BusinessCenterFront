@@ -18,13 +18,7 @@
         <!-- 菜单操作 -->
         <template #operation="scope">
           <el-button type="primary" link :icon="View" @click="openEditUserDialog('详情', scope.row)"></el-button>
-          <el-button
-            type="primary"
-            link
-            :icon="EditPen"
-            v-if="scope.row.roleId !== 3"
-            @click="openEditUserDialog('编辑', scope.row)"
-          ></el-button>
+          <el-button type="primary" link :icon="EditPen" @click="openEditUserDialog('编辑', scope.row)"></el-button>
           <el-button type="danger" link :icon="Delete" v-if="scope.row.roleId !== 3"></el-button>
         </template>
       </ProTable>
@@ -43,7 +37,7 @@ import ProTable from '@/components/ProTable/index.vue';
 import EditUser from './components/EditUser.vue';
 import { getUserList, addUser, updateUser, updateUserStatus } from '@/api/modules/user';
 import { ResPage, User } from '@/api/interface';
-import { userStatus, userRole } from '@/utils/dict';
+import { userStatus, userRole, sexType } from '@/utils/dict';
 import { TableColumnCtx } from 'element-plus';
 import dayjs from 'dayjs';
 import { useHandleData } from '@/hooks/useHandleData';
@@ -60,7 +54,24 @@ const dataCallback = (data: ResPage<User.ResUserList>) => {
 
 // 表格配置项
 const columns: ColumnProps<User.ResUserList>[] = [
-  { prop: 'username', label: '用户名', search: { el: 'input' } },
+  { prop: 'username', label: '用户名', width: 150, search: { el: 'input', props: { placeholder: '请输入用户名' } } },
+  { prop: 'nickname', label: '姓名', width: 150, search: { el: 'input', props: { placeholder: '请输入用户姓名' } } },
+  {
+    prop: 'sex',
+    label: '性别',
+    enum: sexType,
+    search: { el: 'select', props: { filterable: true, clearable: true, placeholder: '请选择性别' } }
+  },
+  { prop: 'phone', label: '手机号码', width: 150 },
+  { prop: 'email', label: '邮箱', width: 200 },
+  {
+    prop: 'birthday',
+    label: '生日',
+    width: 150,
+    render: ({ row }) => (row.birthday ? dayjs(row.birthday).format('YYYY-MM-DD') : '--')
+  },
+  { prop: 'jobId', label: '职位', width: 150 },
+  { prop: 'departmentId', label: '所属部门', width: 150 },
   {
     prop: 'roleId',
     label: '角色',
@@ -70,7 +81,6 @@ const columns: ColumnProps<User.ResUserList>[] = [
       props: { filterable: true, clearable: true, placeholder: '请选择用户角色' }
     }
   },
-  { prop: 'email', label: '邮箱' },
   {
     prop: 'status',
     label: '状态',
@@ -99,13 +109,13 @@ const columns: ColumnProps<User.ResUserList>[] = [
   {
     prop: 'lastLoginDate',
     label: '最后一次登录时间',
-    width: 250,
+    width: 200,
     render: ({ row }) => (row.lastLoginDate ? dayjs(row.lastLoginDate).format('YYYY-MM-DD HH:mm:ss') : '--')
   },
   {
     prop: 'createTime',
     label: '创建时间',
-    width: 250,
+    width: 200,
     render: ({ row }) => (row.createTime ? dayjs(row.createTime).format('YYYY-MM-DD HH:mm:ss') : '--')
   },
   { prop: 'operation', label: '操作', width: 150, fixed: 'right' }

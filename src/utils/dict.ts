@@ -24,3 +24,12 @@ export const userRole = [
   { label: '主账号', value: 2 },
   { label: '超级管理员', value: 3 }
 ];
+
+/**
+ * @description：性别 0未知, 1男, 2女
+ */
+export const sexType = [
+  { label: '未知', value: 0 },
+  { label: '男', value: 1 },
+  { label: '女', value: 2 }
+];

@@ -60,7 +60,10 @@ export namespace User {
   export interface ResUserList {
     id: string;
     username: string;
+    nickname: string;
     gender: number;
+    birthday: string;
+    phone: number;
     user: { detail: { age: number } };
     idCard: string;
     email: string;
@@ -69,6 +72,8 @@ export namespace User {
     status: number;
     avatar: string;
     photo: any[];
+    jobId: number;
+    departmentId: number;
     roleId: number;
     lastLoginDate: string;
     updateTime: string;
@@ -76,9 +81,15 @@ export namespace User {
   }
   export interface ReqUser {
     id?: string;
-    username: string;
     password: string;
+    username: string;
+    nickname: string;
+    gender: number;
+    birthday: string;
+    phone: number;
     email: string;
+    jobId: number;
+    departmentId: number;
     roleId: number;
     status: number;
   }
