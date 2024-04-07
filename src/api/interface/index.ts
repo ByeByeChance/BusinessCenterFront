@@ -58,7 +58,7 @@ export namespace User {
     roleId: number;
   }
   export interface ResUserList {
-    id: string;
+    id: number;
     username: string;
     nickname: string;
     gender: number;
@@ -80,7 +80,7 @@ export namespace User {
     children?: ResUserList[];
   }
   export interface ReqUser {
-    id?: string;
+    id?: number;
     password: string;
     username: string;
     nickname: string;
@@ -102,12 +102,12 @@ export namespace User {
     genderValue: number;
   }
   export interface ResDepartment {
-    id: string;
+    id: number;
     name: string;
     children?: ResDepartment[];
   }
   export interface ResRole {
-    id: string;
+    id: number;
     name: string;
     children?: ResDepartment[];
   }

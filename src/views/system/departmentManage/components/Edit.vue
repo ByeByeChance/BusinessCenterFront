@@ -42,7 +42,7 @@
 <script setup lang="ts">
 import { reactive, ref } from 'vue';
 import BaseDialog from '@/components/BaseDialog/index.vue';
-import { Department, ResPage, User } from '@/api/interface';
+import { Department } from '@/api/interface/department';
 import { ElMessage, FormInstance } from 'element-plus';
 import { getUserList } from '@/api/modules/user';
 
@@ -113,9 +113,9 @@ const cancel = () => {
   }, 100);
 };
 
-const userList = ref<User.ResUserList[]>([]);
+const userList = ref<{ label: string; value: number }[]>([]);
 const _getUserList = () => {
-  getUserList({ page: 1, size: 1000 }).then((res: ResPage<User.ResUserList>) => {
+  getUserList({ pageNumber: 1, pageSize: 1000 }).then(res => {
     userList.value = res.data?.list?.map(item => ({ label: item.nickname, value: item.id })) || [];
   });
 };

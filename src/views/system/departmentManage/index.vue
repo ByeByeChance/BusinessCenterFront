@@ -34,7 +34,7 @@ import { ColumnProps } from '@/components/ProTable/interface';
 import { Delete, EditPen, CirclePlus, View } from '@element-plus/icons-vue';
 import ProTable from '@/components/ProTable/index.vue';
 import Edit from './components/Edit.vue';
-import { getDepartmentList, addDepartment, updateDepartment, updateDepartmentStatus } from '@/api/modules/Department';
+import { getDepartmentList, addDepartment, updateDepartment, updateDepartmentStatus } from '@/api/modules/department';
 import { ResPage } from '@/api/interface';
 import { Department } from '@/api/interface/department';
 import { userStatus } from '@/utils/dict';
