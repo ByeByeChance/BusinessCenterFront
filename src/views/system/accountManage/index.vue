@@ -4,8 +4,6 @@
       <ProTable
         ref="proTable"
         title="用户列表"
-        row-key="name"
-        :indent="20"
         :columns="columns"
         :request-api="getUserList"
         :data-callback="dataCallback"
@@ -13,7 +11,7 @@
       >
         <!-- 表格 header 按钮 -->
         <template #tableHeader>
-          <el-button type="primary" :icon="CirclePlus" @click="openEditUserDialog('新增')">新增用户</el-button>
+          <el-button type="primary" :icon="CirclePlus" @click="openEditUserDialog('新增')">新增</el-button>
         </template>
         <!-- 菜单操作 -->
         <template #operation="scope">
