@@ -17,9 +17,17 @@
       :disabled="props.title === '详情'"
     >
       <el-form-item label="上级部门" prop="roleId">
-        <el-select v-model="form.parentId" placeholder="请选择上级部门">
-          <el-option v-for="(item, index) in props.tableData" :key="index" :label="item.name" :value="item.id" />
-        </el-select>
+        <el-tree-select
+          v-model="form.parentId"
+          :data="props.tableData"
+          node-key="id"
+          :props="{ label: 'name' }"
+          check-strictly
+          :default-expand-all="true"
+          :render-after-expand="false"
+          placeholder="无"
+        >
+        </el-tree-select>
       </el-form-item>
       <el-form-item label="部门名称" prop="name">
         <el-input v-model="form.name" placeholder="请填写部门名称" clearable></el-input>

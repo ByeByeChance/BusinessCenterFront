@@ -26,5 +26,6 @@ export namespace Department {
     createNickname: string; // 创建人姓名
     createTime: string;
     updateTime: string;
+    children?: DepartmentItem[];
   }
 }
