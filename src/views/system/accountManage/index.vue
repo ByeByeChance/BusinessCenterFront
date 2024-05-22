@@ -39,8 +39,9 @@ import { userStatus, userRole, sexType } from '@/utils/dict';
 import { TableColumnCtx } from 'element-plus';
 import dayjs from 'dayjs';
 import { useHandleData } from '@/hooks/useHandleData';
+import { useComponentRef } from '@/hooks/useComponentRef';
 
-const proTable = ref();
+const proTable = useComponentRef(ProTable);
 const dataCallback = (data: ResPage<User.ResUserList>) => {
   return {
     list: data.list,
@@ -129,7 +130,7 @@ const rowClick = async (rowData: User.ResUserList, column: TableColumnCtx<User.R
 };
 
 const editUserDialogShow = ref(false);
-const editUserRef = ref<InstanceType<typeof EditUser> | null>(null);
+const editUserRef = useComponentRef(EditUser);
 const openEditUserDialog = (title: string, rowData: Partial<User.ResUserList> = {}) => {
   const params = {
     title,

@@ -5,7 +5,7 @@
     @close="cancel()"
     :title="props.title"
     :show-footer="props.title === '详情' ? false : true"
-    width="35%"
+    width="40%"
   >
     <el-form
       class="edit-user-dialog-form"
