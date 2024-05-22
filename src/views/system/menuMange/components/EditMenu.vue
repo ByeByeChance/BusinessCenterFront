@@ -15,6 +15,17 @@
       label-width="auto"
       :disabled="props.title === '详情'"
     >
+      <el-form-item label="上级菜单" prop="parentId">
+        <el-tree-select
+          v-model="props.rowData!.parentId"
+          :data="menuList"
+          check-strictly
+          :default-expand-all="true"
+          :render-after-expand="false"
+          placeholder="无"
+        >
+        </el-tree-select>
+      </el-form-item>
       <el-form-item label="菜单标题" prop="title">
         <el-input v-model="props.rowData!.title" placeholder="请填写菜单标题" clearable></el-input>
       </el-form-item>
@@ -73,12 +84,13 @@
 import { reactive, ref } from 'vue';
 import BaseDialog from '@/components/BaseDialog/index.vue';
 import SelectIcon from '@/components/SelectIcon/index.vue';
-import { Menu } from '@/api/interface/menu';
+import { Menu as ApiMenu } from '@/api/interface/menu';
 import { ElMessage, FormInstance } from 'element-plus';
+import { useAuthStore } from '@/stores/modules/auth';
 
 interface Props {
   title: string;
-  rowData: Partial<Menu.MenuItem>;
+  rowData: Partial<ApiMenu.MenuItem>;
   api?: (params: any, config: any) => Promise<any>;
   getTableList?: () => void;
 }
@@ -94,12 +106,36 @@ const acceptParams = (params: Props) => {
   dialogVisible.value = true;
 };
 
+const authStore = useAuthStore();
+type CommonTree = {
+  label: string;
+  value: number | null;
+  children?: CommonTree[];
+};
+const transformMenuListToCommonTree = (initTree: Menu.MenuOptions[]): CommonTree[] => {
+  const result: CommonTree[] = [];
+  for (let i = 0; i < initTree.length; i++) {
+    const currentItem = initTree[i];
+    const item: CommonTree = {
+      label: '',
+      value: null,
+      children: undefined
+    };
+    item.label = currentItem.meta?.title || '';
+    item.value = currentItem.id;
+    if (currentItem.children) {
+      item.children = transformMenuListToCommonTree(currentItem.children!);
+    }
+    result.push(item);
+  }
+  return result;
+};
+const menuList: CommonTree[] = transformMenuListToCommonTree(authStore.authMenuListGet);
+
 const formRef = ref<FormInstance>();
 const rules = reactive({
   title: [{ required: true, message: '请填写菜单标题' }],
-  name: [{ required: true, message: '请填写菜单name' }],
-  path: [{ required: true, message: '请填写菜单路径' }],
-  component: [{ required: true, message: '请填写组件路径' }]
+  name: [{ required: true, message: '请填写菜单name' }]
 });
 
 const handleConfirm = () => {
